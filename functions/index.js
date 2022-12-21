@@ -19,7 +19,7 @@ exports.helloFromNorthPole = functions.https.onRequest((request, response) => {
 // This is the open web version.
 // Can be invoked: https://us-central1-shared-santa-app.cloudfunctions.net/getAllImagesWeb
 exports.getAllImagesWeb = functions.https.onRequest((request, response) => {
-    listFiles('shared-santa-app.appspot.com').then( files => {
+    listFiles(BUCKET).then( files => {
         response.send(JSON.stringify(files));
       })
 });
@@ -27,7 +27,7 @@ exports.getAllImagesWeb = functions.https.onRequest((request, response) => {
 // This is the 'callable function' version.
 // Can only be invoked by Firebase app
 exports.getAllImages = functions.https.onCall((data, context) => {
-    return listFiles('shared-santa-app.appspot.com').then(files => {
+    return listFiles(BUCKET).then(files => {
         return files
     })
 });
