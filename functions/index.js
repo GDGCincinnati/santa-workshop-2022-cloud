@@ -27,7 +27,7 @@ exports.getAllImagesWeb = functions.https.onRequest((request, response) => {
 // This is the 'callable function' version.
 // Can only be invoked by Firebase app
 exports.getAllImages = functions.https.onCall((data, context) => {
-    listFiles('shared-santa-app.appspot.com').then(files => {
+    return listFiles('shared-santa-app.appspot.com').then(files => {
         return files
     })
 });
